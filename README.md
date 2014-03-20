@@ -16,7 +16,7 @@ Installation
 
 Just type
 
-    make
+    $ make
 
 to build it. Then
 
@@ -36,7 +36,7 @@ _/etc/pam.d/common-auth_ or whatever service you want to protect:
     auth    required        pam_schroedinger.so dir=/var/run/schroedinger delay=1
 
 These are all arguments that can be passed to _pam_schroedinger_ and also their
-default values. The delay is in seconds.
+default values. The _delay_ is in seconds. The ticket-files are stored in _dir_.
 
 
 Why's that necessary?
@@ -47,10 +47,15 @@ arranging pty's and processes like su or sudo to try a login token, despite
 of sleep-delays which just add a constant delay of a few seconds to the overall
 attack. This is due to todays computing power even on modest desktop machines
 which have Gigs of RAM and multiple cores which allows to run multiple
-100 instances of su/sudo in parallel. Just try:
+100 instances of _su/sudo_ in parallel. Just try:
 
     $ ./enabler -c sudo -n 200 < /usr/share/dict/words
 
 on a core-i5 laptop for example.
 
+
+What else?
+----------
+
+The idea is so simple that its probably re-invented every Friday.
 
