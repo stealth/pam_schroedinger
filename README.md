@@ -5,7 +5,7 @@ _pam_schroedinger_ prevents from dicitionary/brute-force attacks aganinst PAM ac
 by only returning PAM_SUCCESS if there was no previous login or attempt
 within a certain timeframe. In a common scenario, users do not authenticate
 more than once in a second. Everything else looks like a brute force.
-pam_schroedinger prevents PAM accounts from dictionary attacks much better
+_pam_schroedinger_ prevents PAM accounts from dictionary attacks much better
 than a sleep-based delay hardcoded in the authentication mechanism, as used
 today in su or sudo for example.
 The attacker will see no delay in his attack, but he will not see which
@@ -49,7 +49,7 @@ attack. This is due to todays computing power even on modest desktop machines
 which have Gigs of RAM and multiple cores which allows to run multiple
 100 instances of su/sudo in parallel. Just try:
 
-   $ ./enabler -c sudo -n 200 < /usr/share/dict/words
+    $ ./enabler -c sudo -n 200 < /usr/share/dict/words
 
 on a core-i5 laptop for example.
 
