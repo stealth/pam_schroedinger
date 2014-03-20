@@ -9,7 +9,7 @@ _pam_schroedinger_ prevents PAM accounts from dictionary attacks much better
 than a sleep-based delay hardcoded in the authentication mechanism, as used
 today in _su_ or _sudo_ for example.
 The attacker will see no delay in his attack, but he will not see which
-login tokens succeeds, even if he tried the right one. So there is some
+login token succeeds, even if he tried the right one. So there is some
 uncertainty added to the login process so attackers can never be sure
 the cat is dead or alive.
 
@@ -33,7 +33,7 @@ on a 64bit machine, or:
     # cp pam_schroedinger.so /lib/security
 
 for 32bit architectures. Then add it to the PAM stack by adding it to
-_/etc/pam.d/common-auth_ or whatever service you want to protect:
+_/etc/pam.d/su_ or whatever service you want to protect:
 
     auth    required        pam_schroedinger.so dir=/var/run/schroedinger delay=1
 
@@ -60,4 +60,15 @@ What else?
 ----------
 
 The idea is so simple that its probably re-invented every Friday.
+
+Be aware that if you apply _pam_schroedinger_ to remote services,
+it is easier to DoS you. Attackers can DoS you anyway by consuming
+all available connection slots, but it makes it easier (even though
+they wont notice). For services like ssh its strongly recommended
+to (also) use pubkey authentication, which would allow you to login
+via keys rather than PAM if you are under brute force attack/DoS.
+You can also consider switching from password authentication to
+something else (in ssh case thats easy) entirely.
+
+Do not use weak passwords. Even when using _pam_schroedinger_.
 
