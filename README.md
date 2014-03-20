@@ -1,7 +1,7 @@
 pam_schroedinger
 ================
 
-_pam_schroedinger_ prevents from dicitionary/brute-force attacks aganinst PAM accounts
+_pam_schroedinger_ prevents from dicitionary/brute-force attacks against PAM accounts
 by only returning PAM_SUCCESS if there was no previous login or attempt
 within a certain timeframe. In a common scenario, users do not authenticate
 more than once in a second. Everything else looks like a brute force.
@@ -9,7 +9,9 @@ _pam_schroedinger_ prevents PAM accounts from dictionary attacks much better
 than a sleep-based delay hardcoded in the authentication mechanism, as used
 today in su or sudo for example.
 The attacker will see no delay in his attack, but he will not see which
-login tokens succeeds, even if he tried the right one.
+login tokens succeeds, even if he tried the right one. So there is some
+uncertainty added to the login process so attackers can never be sure
+the cat is dead or alive.
 
 Installation
 ------------
