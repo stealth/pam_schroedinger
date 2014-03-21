@@ -9,9 +9,10 @@ _pam_schroedinger_ prevents PAM accounts from dictionary attacks much better
 than a sleep-based delay hardcoded in the authentication mechanism, as used
 today in _su_ or _sudo_ for example.
 The attacker will see no delay in his attack, but he will not see which
-login token succeeds, even if he tried the right one. So there is some
+login token succeeds, even if he tried the right one. So there is a certain
 uncertainty added to the login process so attackers can never be sure
 the cat is dead or alive.
+This is the opposite of _pam_timestamp_.
 
 Installation
 ------------
