@@ -150,8 +150,13 @@ int main(int argc, char **argv)
 				// FALLTHROUGH
 			case STATE_NONE:
 			case STATE_EXITED:
-				if (pt[i].open() < 0)
-					die("enabler: pty open");
+				// temporarily out of pty's? yes we can!
+				if (pt[i].open() < 0) {
+					sessions[i].state = STATE_NONE;
+					pfds[i].events = pfds[i].revents = 0;
+					pfds[i].fd = -1;
+					continue;
+				}
 				m = pt[i].master();
 
 				// Even if we dont close a master ourself, it happens that the kernel re-uses the fd
